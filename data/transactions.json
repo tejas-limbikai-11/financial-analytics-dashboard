@@ -300,5 +300,3 @@
     { "id": 299, "date": "2024-01-03T17:13:15Z", "amount": 1500.00, "category": "Revenue", "status": "Pending", "user_id": "user_001" ,"user_profile":"https://thispersondoesnotexist.com/"},
     { "id": 300, "date": "2024-02-27T15:17:48Z", "amount": 1100.00, "category": "Expense", "status": "Paid", "user_id": "user_002" ,"user_profile":"https://thispersondoesnotexist.com/"}                
 ]
-
-
