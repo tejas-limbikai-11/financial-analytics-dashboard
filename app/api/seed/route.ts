@@ -1,126 +1,98 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getDatabase } from "@/lib/mongodb"
-import { createUser } from "@/lib/auth"
-
-// Import the transaction data
-const transactionData = [
-  {
-    id: 1,
-    date: "2024-01-15T08:34:12Z",
-    amount: 1500.0,
-    category: "Revenue",
-    status: "Paid",
-    user_id: "user_001",
-    user_profile: "https://thispersondoesnotexist.com/",
-  },
-  {
-    id: 2,
-    date: "2024-02-21T11:14:38Z",
-    amount: 1200.5,
-    category: "Expense",
-    status: "Paid",
-    user_id: "user_002",
-    user_profile: "https://thispersondoesnotexist.com/",
-  },
-  {
-    id: 3,
-    date: "2024-03-03T18:22:04Z",
-    amount: 300.75,
-    category: "Revenue",
-    status: "Pending",
-    user_id: "user_003",
-    user_profile: "https://thispersondoesnotexist.com/",
-  },
-  {
-    id: 4,
-    date: "2024-04-10T05:03:11Z",
-    amount: 5000.0,
-    category: "Expense",
-    status: "Paid",
-    user_id: "user_004",
-    user_profile: "https://thispersondoesnotexist.com/",
-  },
-  {
-    id: 5,
-    date: "2024-05-20T12:01:45Z",
-    amount: 800.0,
-    category: "Revenue",
-    status: "Pending",
-    user_id: "user_001",
-    user_profile: "https://thispersondoesnotexist.com/",
-  },
-  // ... (continuing with all 300 transactions from your data)
-  // For brevity, I'm showing just the first few, but the full array would include all 300
-]
+import { hashPassword } from "@/lib/auth"
+import transactionsData from "@/data/transactions.json"
 
 export async function POST(request: NextRequest) {
+  console.log("🌱 Starting database seeding process...")
+
   try {
     const db = await getDatabase()
+    console.log("✅ Database connection established")
 
-    // Create demo users first
-    const demoUsers = [
-      { email: "demo@example.com", password: "demo123", name: "Demo User", userId: "user_001" },
-      { email: "john@example.com", password: "password123", name: "John Doe", userId: "user_002" },
-      { email: "jane@example.com", password: "password123", name: "Jane Smith", userId: "user_003" },
-      { email: "bob@example.com", password: "password123", name: "Bob Johnson", userId: "user_004" },
-    ]
-
-    const userIdMap: Record<string, string> = {}
-
-    // Create users
-    for (const userData of demoUsers) {
-      try {
-        const user = await createUser(userData.email, userData.password, userData.name)
-        userIdMap[userData.userId] = user._id!
-        console.log(`Created user: ${userData.email}`)
-      } catch (error: any) {
-        if (error.message === "User already exists") {
-          // Get existing user ID
-          const users = db.collection("users")
-          const existingUser = await users.findOne({ email: userData.email })
-          if (existingUser) {
-            userIdMap[userData.userId] = existingUser._id.toString()
-            console.log(`User already exists: ${userData.email}`)
-          }
-        } else {
-          console.error(`Error creating user ${userData.email}:`, error)
-        }
-      }
-    }
-
-    // Clear existing transactions
+    // Create demo users based on the transaction data
+    const users = db.collection("users")
     const transactions = db.collection("transactions")
+
+    // Clear existing data
+    console.log("🧹 Clearing existing data...")
+    await users.deleteMany({})
     await transactions.deleteMany({})
 
-    // Transform and insert transaction data
-    const transformedTransactions = transactionData.map((transaction) => ({
-      date: transaction.date,
-      amount: transaction.category === "Revenue" ? transaction.amount : -transaction.amount,
-      category: transaction.category,
-      description: transaction.category === "Revenue" ? "Revenue Transaction" : "Expense Transaction",
-      status: transaction.status.toLowerCase(),
-      userId: userIdMap[transaction.user_id] || userIdMap["user_001"], // Fallback to first user
-      type: transaction.category === "Revenue" ? "income" : "expense",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }))
+    // Create users based on unique user_ids from transactions
+    const uniqueUserIds = [...new Set(transactionsData.map((t) => t.user_id))]
+    console.log(`👥 Creating ${uniqueUserIds.length} users...`)
 
-    const result = await transactions.insertMany(transformedTransactions)
+    const userMap = new Map()
+    const demoUsers = [
+      { user_id: "user_001", name: "John Smith", email: "john@example.com", password: "password123" },
+      { user_id: "user_002", name: "Sarah Johnson", email: "sarah@example.com", password: "password123" },
+      { user_id: "user_003", name: "Mike Davis", email: "mike@example.com", password: "password123" },
+      { user_id: "user_004", name: "Emily Brown", email: "emily@example.com", password: "password123" },
+    ]
 
-    return NextResponse.json(
-      {
-        success: true,
-        message: `Database seeded successfully`,
-        usersCreated: Object.keys(userIdMap).length,
-        transactionsCreated: result.insertedCount,
+    // Add demo user for easy login
+    demoUsers.push({
+      user_id: "demo_user",
+      name: "Demo User",
+      email: "demo@example.com",
+      password: "demo123",
+    })
+
+    for (const userData of demoUsers) {
+      const hashedPassword = await hashPassword(userData.password)
+      const userDoc = {
+        email: userData.email,
+        password: hashedPassword,
+        name: userData.name,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }
+
+      const result = await users.insertOne(userDoc)
+      userMap.set(userData.user_id, result.insertedId.toString())
+      console.log(`✅ Created user: ${userData.name} (${userData.email})`)
+    }
+
+    // Insert transactions with proper user references
+    console.log(`💰 Creating ${transactionsData.length} transactions...`)
+
+    const transactionDocs = transactionsData.map((transaction) => {
+      const userId = userMap.get(transaction.user_id)
+
+      return {
+        date: transaction.date,
+        amount: transaction.category === "Revenue" ? Math.abs(transaction.amount) : -Math.abs(transaction.amount),
+        category: transaction.category,
+        description: `Transaction #${transaction.id} - ${transaction.category}`,
+        status: transaction.status.toLowerCase(),
+        userId: userId,
+        type: transaction.category === "Revenue" ? "income" : "expense",
+        createdAt: new Date(transaction.date),
+        updatedAt: new Date(),
+      }
+    })
+
+    await transactions.insertMany(transactionDocs)
+    console.log(`✅ Created ${transactionDocs.length} transactions`)
+
+    console.log("🎉 Database seeding completed successfully!")
+
+    return NextResponse.json({
+      success: true,
+      message: "Database seeded successfully!",
+      usersCreated: demoUsers.length,
+      transactionsCreated: transactionDocs.length,
+      demoCredentials: {
+        email: "demo@example.com",
+        password: "demo123",
       },
-      { status: 200, headers: { "Content-Type": "application/json" } },
-    )
+    })
   } catch (error) {
-    console.error("Seed error:", error)
+    console.error("❌ Seeding error:", error)
     return NextResponse.json(
-      { success: false, message: "Failed to seed database" },
-      { status: 500, headers: { "Content-Type": "application/json" } },
+      { success: false, message: "Failed to seed database", error: error.message },
+      { status: 500 },
     )
   }
 }
