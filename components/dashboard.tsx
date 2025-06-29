@@ -11,7 +11,7 @@ import { TransactionTable } from "@/components/transaction-table"
 import { FinancialCharts } from "@/components/financial-charts"
 import { ExportModal } from "@/components/export-modal"
 import { AddTransactionModal } from "@/components/add-transaction-modal"
-import { LogOut, Download, Search, Filter, AlertCircle, Plus, Database, TrendingUp } from "lucide-react"
+import { LogOut, Download, Search, Filter, AlertCircle, Plus, TrendingUp } from "lucide-react"
 import { FloatingActionButton } from "@/components/floating-action-button"
 
 interface DashboardProps {
@@ -44,6 +44,7 @@ export function Dashboard({ onLogout }: DashboardProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([])
   const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isInitializing, setIsInitializing] = useState(false)
   const [error, setError] = useState("")
   const [showExportModal, setShowExportModal] = useState(false)
   const [showAddModal, setShowAddModal] = useState(false)
@@ -61,12 +62,72 @@ export function Dashboard({ onLogout }: DashboardProps) {
   const statuses = ["paid", "pending"]
 
   useEffect(() => {
-    fetchTransactions()
+    initializeUserData()
   }, [])
 
   useEffect(() => {
     applyFilters()
   }, [transactions, filters])
+
+  const initializeUserData = async () => {
+    try {
+      setIsLoading(true)
+      setIsInitializing(true)
+
+      const token = localStorage.getItem("token")
+
+      // First, try to fetch existing transactions
+      const transactionsResponse = await fetch("/api/transactions", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (transactionsResponse.ok) {
+        const data = await transactionsResponse.json()
+
+        if (data.length === 0) {
+          // No transactions found, initialize with sample data
+          console.log("No transactions found, initializing with sample data...")
+
+          const initResponse = await fetch("/api/auth/initialize", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+
+          if (initResponse.ok) {
+            // Fetch transactions again after initialization
+            const newTransactionsResponse = await fetch("/api/transactions", {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            })
+
+            if (newTransactionsResponse.ok) {
+              const newData = await newTransactionsResponse.json()
+              setTransactions(newData)
+              console.log(`✅ Loaded ${newData.length} transactions after initialization`)
+            }
+          } else {
+            setError("Failed to initialize data")
+          }
+        } else {
+          setTransactions(data)
+          console.log(`✅ Loaded ${data.length} existing transactions`)
+        }
+      } else {
+        setError("Failed to fetch transactions")
+      }
+    } catch (err) {
+      console.error("Error initializing data:", err)
+      setError("Network error occurred")
+    } finally {
+      setIsLoading(false)
+      setIsInitializing(false)
+    }
+  }
 
   const fetchTransactions = async () => {
     try {
@@ -85,31 +146,6 @@ export function Dashboard({ onLogout }: DashboardProps) {
       }
     } catch (err) {
       setError("Network error occurred")
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const seedDatabase = async () => {
-    try {
-      setIsLoading(true)
-      const response = await fetch("/api/seed", {
-        method: "POST",
-      })
-
-      if (response.ok) {
-        const data = await response.json()
-        alert(
-          `Database seeded successfully! Created ${data.transactionsCreated} transactions for ${data.usersCreated} users.`,
-        )
-        fetchTransactions()
-      } else {
-        setError("Failed to seed database")
-      }
-    } catch (err) {
-      setError("Error seeding database")
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -178,7 +214,12 @@ export function Dashboard({ onLogout }: DashboardProps) {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-lg text-gray-600">
+            {isInitializing ? "Setting up your financial data..." : "Loading dashboard..."}
+          </p>
+        </div>
       </div>
     )
   }
@@ -203,10 +244,6 @@ export function Dashboard({ onLogout }: DashboardProps) {
                 <Download className="h-4 w-4" />
                 <span>Export CSV</span>
               </Button>
-              <Button variant="outline" onClick={seedDatabase} className="flex items-center space-x-2 bg-transparent">
-                <Database className="h-4 w-4" />
-                <span>Seed DB</span>
-              </Button>
               <Button variant="outline" onClick={handleLogout}>
                 <LogOut className="h-4 w-4 mr-2" />
                 Logout
@@ -216,25 +253,6 @@ export function Dashboard({ onLogout }: DashboardProps) {
         </div>
       </header>
 
-      {/* Add this after the header section, before the main content */}
-      <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
-        <div className="flex">
-          <div className="flex-shrink-0">
-            <TrendingUp className="h-5 w-5 text-blue-400" />
-          </div>
-          <div className="ml-3">
-            <p className="text-sm text-blue-700">
-              Welcome to your Financial Analytics Dashboard!
-              {transactions.length === 0 ? (
-                <span> Click "Add Transaction" to get started or "Seed DB" to load sample data.</span>
-              ) : (
-                <span> You have {transactions.length} transactions loaded.</span>
-              )}
-            </p>
-          </div>
-        </div>
-      </div>
-
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {error && (
           <Alert variant="destructive" className="mb-6">
@@ -242,6 +260,24 @@ export function Dashboard({ onLogout }: DashboardProps) {
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
+
+        {/* Welcome Message */}
+        <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <TrendingUp className="h-5 w-5 text-blue-400" />
+            </div>
+            <div className="ml-3">
+              <p className="text-sm text-blue-700">
+                Welcome to your Financial Analytics Dashboard!
+                <span className="font-medium">
+                  {" "}
+                  You have {transactions.length} transactions loaded and ready for analysis.
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* Charts Section */}
         <div className="mb-8">

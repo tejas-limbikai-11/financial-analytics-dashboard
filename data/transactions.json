@@ -1405,7 +1405,7 @@
   },
   {
     "id": 157,
-    "date": "2024-07-23T08:22:55Z",
+    "date": "2024-07-25T12:15:10Z",
     "amount": 2400.0,
     "category": "Revenue",
     "status": "Pending",
@@ -1414,7 +1414,7 @@
   },
   {
     "id": 158,
-    "date": "2024-08-28T14:30:44Z",
+    "date": "2024-08-30T16:03:44Z",
     "amount": 1500.0,
     "category": "Expense",
     "status": "Paid",
@@ -1423,7 +1423,7 @@
   },
   {
     "id": 159,
-    "date": "2024-09-30T13:10:59Z",
+    "date": "2024-09-20T08:52:56Z",
     "amount": 3200.0,
     "category": "Revenue",
     "status": "Paid",
@@ -1432,8 +1432,8 @@
   },
   {
     "id": 160,
-    "date": "2024-10-06T17:43:25Z",
-    "amount": 2000.0,
+    "date": "2024-10-09T11:35:42Z",
+    "amount": 1800.0,
     "category": "Expense",
     "status": "Pending",
     "user_id": "user_002",
@@ -1441,8 +1441,8 @@
   },
   {
     "id": 161,
-    "date": "2024-11-20T14:50:13Z",
-    "amount": 3000.0,
+    "date": "2024-11-11T14:22:19Z",
+    "amount": 3200.0,
     "category": "Revenue",
     "status": "Paid",
     "user_id": "user_003",
@@ -1450,17 +1450,17 @@
   },
   {
     "id": 162,
-    "date": "2024-12-15T12:04:51Z",
+    "date": "2024-12-15T12:44:07Z",
     "amount": 1100.0,
     "category": "Expense",
-    "status": "Pending",
+    "status": "Paid",
     "user_id": "user_004",
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
     "id": 163,
-    "date": "2024-01-21T08:57:39Z",
-    "amount": 2200.0,
+    "date": "2024-01-20T09:05:34Z",
+    "amount": 1500.0,
     "category": "Revenue",
     "status": "Paid",
     "user_id": "user_001",
@@ -1468,8 +1468,8 @@
   },
   {
     "id": 164,
-    "date": "2024-02-27T16:22:59Z",
-    "amount": 850.0,
+    "date": "2024-02-03T17:12:23Z",
+    "amount": 2200.0,
     "category": "Expense",
     "status": "Pending",
     "user_id": "user_002",
@@ -1477,8 +1477,8 @@
   },
   {
     "id": 165,
-    "date": "2024-03-02T13:45:12Z",
-    "amount": 1750.0,
+    "date": "2024-03-28T14:20:15Z",
+    "amount": 2300.0,
     "category": "Revenue",
     "status": "Paid",
     "user_id": "user_003",
@@ -1486,8 +1486,8 @@
   },
   {
     "id": 166,
-    "date": "2024-04-16T11:40:05Z",
-    "amount": 1200.5,
+    "date": "2024-04-18T16:58:43Z",
+    "amount": 900.0,
     "category": "Expense",
     "status": "Paid",
     "user_id": "user_004",
@@ -1495,8 +1495,8 @@
   },
   {
     "id": 167,
-    "date": "2024-05-01T09:25:18Z",
-    "amount": 2000.0,
+    "date": "2024-05-12T14:03:25Z",
+    "amount": 1500.0,
     "category": "Revenue",
     "status": "Pending",
     "user_id": "user_001",
@@ -1504,8 +1504,8 @@
   },
   {
     "id": 168,
-    "date": "2024-06-12T17:32:42Z",
-    "amount": 600.0,
+    "date": "2024-06-19T12:40:10Z",
+    "amount": 2200.0,
     "category": "Expense",
     "status": "Paid",
     "user_id": "user_002",
@@ -1513,88 +1513,16 @@
   },
   {
     "id": 169,
-    "date": "2024-07-29T11:59:37Z",
-    "amount": 2400.0,
+    "date": "2024-07-06T16:53:21Z",
+    "amount": 2700.0,
     "category": "Revenue",
-    "status": "Paid",
+    "status": "Pending",
     "user_id": "user_003",
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
     "id": 170,
-    "date": "2024-08-25T15:40:11Z",
-    "amount": 1500.0,
-    "category": "Expense",
-    "status": "Pending",
-    "user_id": "user_004",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 171,
-    "date": "2024-09-08T09:50:44Z",
-    "amount": 3200.0,
-    "category": "Revenue",
-    "status": "Paid",
-    "user_id": "user_001",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 172,
-    "date": "2024-10-12T11:23:09Z",
-    "amount": 900.0,
-    "category": "Expense",
-    "status": "Pending",
-    "user_id": "user_002",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 173,
-    "date": "2024-11-05T14:41:59Z",
-    "amount": 2700.0,
-    "category": "Revenue",
-    "status": "Paid",
-    "user_id": "user_003",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 174,
-    "date": "2024-12-09T12:30:22Z",
-    "amount": 1200.0,
-    "category": "Expense",
-    "status": "Paid",
-    "user_id": "user_004",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 175,
-    "date": "2024-01-29T08:35:51Z",
-    "amount": 2200.0,
-    "category": "Revenue",
-    "status": "Pending",
-    "user_id": "user_001",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 176,
-    "date": "2024-02-14T11:42:32Z",
-    "amount": 1100.0,
-    "category": "Expense",
-    "status": "Paid",
-    "user_id": "user_002",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 177,
-    "date": "2024-03-26T16:18:22Z",
-    "amount": 3500.0,
-    "category": "Revenue",
-    "status": "Paid",
-    "user_id": "user_003",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 178,
-    "date": "2024-04-04T10:13:09Z",
+    "date": "2024-08-22T10:37:02Z",
     "amount": 1800.0,
     "category": "Expense",
     "status": "Paid",
@@ -1602,17 +1530,53 @@
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
-    "id": 179,
-    "date": "2024-05-18T12:32:48Z",
-    "amount": 2300.0,
+    "id": 171,
+    "date": "2024-09-11T11:59:50Z",
+    "amount": 2500.0,
     "category": "Revenue",
     "status": "Pending",
     "user_id": "user_001",
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
-    "id": 180,
-    "date": "2024-06-30T09:41:23Z",
+    "id": 172,
+    "date": "2024-10-02T12:55:42Z",
+    "amount": 900.0,
+    "category": "Expense",
+    "status": "Paid",
+    "user_id": "user_002",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
+    "id": 173,
+    "date": "2024-11-03T15:10:19Z",
+    "amount": 2200.0,
+    "category": "Revenue",
+    "status": "Paid",
+    "user_id": "user_003",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
+    "id": 174,
+    "date": "2024-12-08T08:20:44Z",
+    "amount": 1500.0,
+    "category": "Expense",
+    "status": "Pending",
+    "user_id": "user_004",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
+    "id": 175,
+    "date": "2024-01-09T14:22:35Z",
+    "amount": 3200.0,
+    "category": "Revenue",
+    "status": "Paid",
+    "user_id": "user_001",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
+    "id": 176,
+    "date": "2024-02-13T17:11:59Z",
     "amount": 600.0,
     "category": "Expense",
     "status": "Paid",
@@ -1620,9 +1584,45 @@
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
+    "id": 177,
+    "date": "2024-03-21T09:33:26Z",
+    "amount": 2400.0,
+    "category": "Revenue",
+    "status": "Pending",
+    "user_id": "user_003",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
+    "id": 178,
+    "date": "2024-04-26T12:10:13Z",
+    "amount": 1500.0,
+    "category": "Expense",
+    "status": "Paid",
+    "user_id": "user_004",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
+    "id": 179,
+    "date": "2024-05-19T08:22:06Z",
+    "amount": 2200.0,
+    "category": "Revenue",
+    "status": "Paid",
+    "user_id": "user_001",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
+    "id": 180,
+    "date": "2024-06-03T10:12:28Z",
+    "amount": 1000.0,
+    "category": "Expense",
+    "status": "Pending",
+    "user_id": "user_002",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
     "id": 181,
-    "date": "2024-07-19T14:22:13Z",
-    "amount": 3200.0,
+    "date": "2024-07-22T09:44:56Z",
+    "amount": 2700.0,
     "category": "Revenue",
     "status": "Paid",
     "user_id": "user_003",
@@ -1630,17 +1630,17 @@
   },
   {
     "id": 182,
-    "date": "2024-08-13T16:50:45Z",
-    "amount": 1100.0,
+    "date": "2024-08-11T14:35:47Z",
+    "amount": 1500.0,
     "category": "Expense",
-    "status": "Paid",
+    "status": "Pending",
     "user_id": "user_004",
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
     "id": 183,
-    "date": "2024-09-25T18:40:12Z",
-    "amount": 3200.0,
+    "date": "2024-09-18T11:13:56Z",
+    "amount": 2500.0,
     "category": "Revenue",
     "status": "Pending",
     "user_id": "user_001",
@@ -1648,8 +1648,8 @@
   },
   {
     "id": 184,
-    "date": "2024-10-17T09:01:30Z",
-    "amount": 1500.0,
+    "date": "2024-10-24T12:03:04Z",
+    "amount": 2200.0,
     "category": "Expense",
     "status": "Paid",
     "user_id": "user_002",
@@ -1657,7 +1657,7 @@
   },
   {
     "id": 185,
-    "date": "2024-11-22T15:10:20Z",
+    "date": "2024-11-20T13:22:15Z",
     "amount": 3200.0,
     "category": "Revenue",
     "status": "Paid",
@@ -1666,7 +1666,7 @@
   },
   {
     "id": 186,
-    "date": "2024-12-10T12:04:33Z",
+    "date": "2024-12-01T15:19:47Z",
     "amount": 1100.0,
     "category": "Expense",
     "status": "Pending",
@@ -1675,43 +1675,7 @@
   },
   {
     "id": 187,
-    "date": "2024-01-06T14:43:52Z",
-    "amount": 1800.0,
-    "category": "Revenue",
-    "status": "Paid",
-    "user_id": "user_001",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 188,
-    "date": "2024-02-10T15:30:12Z",
-    "amount": 2500.0,
-    "category": "Expense",
-    "status": "Pending",
-    "user_id": "user_002",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 189,
-    "date": "2024-03-03T13:10:53Z",
-    "amount": 1800.0,
-    "category": "Revenue",
-    "status": "Pending",
-    "user_id": "user_003",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 190,
-    "date": "2024-04-01T12:18:25Z",
-    "amount": 2200.0,
-    "category": "Expense",
-    "status": "Paid",
-    "user_id": "user_004",
-    "user_profile": "https://thispersondoesnotexist.com/"
-  },
-  {
-    "id": 191,
-    "date": "2024-05-23T11:09:14Z",
+    "date": "2024-01-11T10:55:01Z",
     "amount": 1500.0,
     "category": "Revenue",
     "status": "Pending",
@@ -1719,17 +1683,17 @@
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
-    "id": 192,
-    "date": "2024-06-05T09:40:33Z",
-    "amount": 600.0,
+    "id": 188,
+    "date": "2024-02-20T17:30:12Z",
+    "amount": 2500.0,
     "category": "Expense",
     "status": "Paid",
     "user_id": "user_002",
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
-    "id": 193,
-    "date": "2024-07-16T08:55:47Z",
+    "id": 189,
+    "date": "2024-03-10T13:17:53Z",
     "amount": 3200.0,
     "category": "Revenue",
     "status": "Paid",
@@ -1737,27 +1701,63 @@
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
-    "id": 194,
-    "date": "2024-08-21T14:04:19Z",
-    "amount": 1100.0,
+    "id": 190,
+    "date": "2024-04-22T14:01:24Z",
+    "amount": 1000.0,
     "category": "Expense",
+    "status": "Pending",
+    "user_id": "user_004",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
+    "id": 191,
+    "date": "2024-05-07T16:26:09Z",
+    "amount": 1500.0,
+    "category": "Revenue",
     "status": "Paid",
+    "user_id": "user_001",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
+    "id": 192,
+    "date": "2024-06-14T11:50:57Z",
+    "amount": 600.0,
+    "category": "Expense",
+    "status": "Pending",
+    "user_id": "user_002",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
+    "id": 193,
+    "date": "2024-07-09T13:18:47Z",
+    "amount": 2400.0,
+    "category": "Revenue",
+    "status": "Paid",
+    "user_id": "user_003",
+    "user_profile": "https://thispersondoesnotexist.com/"
+  },
+  {
+    "id": 194,
+    "date": "2024-08-28T14:13:36Z",
+    "amount": 1500.0,
+    "category": "Expense",
+    "status": "Pending",
     "user_id": "user_004",
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
     "id": 195,
-    "date": "2024-09-28T09:52:01Z",
-    "amount": 2500.0,
+    "date": "2024-09-07T12:02:01Z",
+    "amount": 3200.0,
     "category": "Revenue",
-    "status": "Pending",
+    "status": "Paid",
     "user_id": "user_001",
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
     "id": 196,
-    "date": "2024-10-31T08:38:23Z",
-    "amount": 1500.0,
+    "date": "2024-10-05T14:44:17Z",
+    "amount": 1100.0,
     "category": "Expense",
     "status": "Paid",
     "user_id": "user_002",
@@ -1765,41 +1765,40 @@
   },
   {
     "id": 197,
-    "date": "2024-11-18T13:55:02Z",
-    "amount": 2300.0,
+    "date": "2024-11-23T13:38:04Z",
+    "amount": 2700.0,
     "category": "Revenue",
-    "status": "Pending",
+    "status": "Paid",
     "user_id": "user_003",
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
     "id": 198,
-    "date": "2024-12-12T15:45:06Z",
-    "amount": 1100.0,
+    "date": "2024-12-16T10:04:21Z",
+    "amount": 3200.0,
     "category": "Expense",
-    "status": "Paid",
+    "status": "Pending",
     "user_id": "user_004",
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
     "id": 199,
-    "date": "2024-01-11T09:10:17Z",
-    "amount": 1800.0,
+    "date": "2024-01-03T17:13:15Z",
+    "amount": 1500.0,
     "category": "Revenue",
-    "status": "Paid",
+    "status": "Pending",
     "user_id": "user_001",
     "user_profile": "https://thispersondoesnotexist.com/"
   },
   {
     "id": 200,
-    "date": "2024-02-08T12:48:55Z",
-    "amount": 2200.0,
+    "date": "2024-02-27T15:17:48Z",
+    "amount": 1100.0,
     "category": "Expense",
-    "status": "Pending",
+    "status": "Paid",
     "user_id": "user_002",
     "user_profile": "https://thispersondoesnotexist.com/"
   },
-  { "id": 201, "  \"user_id": "user_002", "user_profile": "https://thispersondoesnotexist.com/" },
   {
     "id": 201,
     "date": "2024-01-22T10:02:14Z",
