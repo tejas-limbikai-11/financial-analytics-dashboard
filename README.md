@@ -158,7 +158,8 @@ After seeding, these accounts are available:
 2. **Transaction Creation** → MongoDB Transactions Collection
 3. **Dashboard Load** → Fetch user-specific transactions
 4. **Real-time Updates** → Immediate UI refresh after changes
-
+   
 ---
+
 
 **Built with MongoDB, Next.js, TypeScript, and Tailwind CSS**
